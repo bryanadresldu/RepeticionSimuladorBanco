@@ -29,7 +29,7 @@ public class LoginForm extends JFrame{
                     new BancoForm();
                     dispose();}
                 else
-                    JOptionPane.showMessageDialog(null, "Usuario o contrasenia incorrecto","error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Usuario o contrasenia incorrecto");
 
             }
         });
