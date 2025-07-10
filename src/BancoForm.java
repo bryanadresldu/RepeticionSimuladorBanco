@@ -73,36 +73,9 @@ public class BancoForm extends JFrame{
         transferirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTextField destinatario = new JTextField(15);
-                JTextField montoField = new JTextField(15);
 
-                JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+                new TransferirForm(cliente, BancoForm.this);
 
-                panel.add(new JLabel("Nombre del destinatario:"));
-                panel.add(destinatario);
-                panel.add(new JLabel("Monto a transferir:"));
-                panel.add(montoField);
-                JOptionPane.showMessageDialog(null, panel, "Transferencia", JOptionPane.PLAIN_MESSAGE);
-
-                try {
-                    String nombreDestinatario = destinatario.getText().trim();
-                    double monto = Double.parseDouble(montoField.getText());
-                    if (nombreDestinatario.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Ingrese un nombre de destinatario.");
-                    } else if (monto <= 0) {
-                        JOptionPane.showMessageDialog(null, "Ingrese un monto positivo.");
-                    } else if (cliente.retirar(monto)) {
-                        actualizarSaldo();
-                        historialTextArea.append("Transferencia a " + nombreDestinatario + ": -$" + monto + "\n");
-                        JOptionPane.showMessageDialog(null, "Transferencia exitosa a " + nombreDestinatario + " por $" + monto);
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
-
-                    }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Datos inválidos");
-                }
             }
         });
         salirButton.addActionListener(new ActionListener() {
@@ -123,5 +96,10 @@ public class BancoForm extends JFrame{
 
     private void actualizarSaldo() {
         saldoLabel.setText("Saldo actual: $" + cliente.getSaldo());
+    }
+
+    public void agregarTransferenciaAHistorial(String destinatario, double monto) {
+        historialTextArea.append("Transferencia a " + destinatario + ": -$" + monto + "\n");
+        actualizarSaldo();
     }
 }
