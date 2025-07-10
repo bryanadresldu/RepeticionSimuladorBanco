@@ -22,7 +22,7 @@ public class LoginForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String usuario=usuario_textField.getText();
-                String contrasenia=new String(passwordField.getPassword());
+                String contrasenia=String.valueOf(passwordField.getPassword());
 
                 if(usuario.equals("cliente123")&&contrasenia.equals("clave456")){
                     JOptionPane.showMessageDialog(null,"Ingreso exitoso");

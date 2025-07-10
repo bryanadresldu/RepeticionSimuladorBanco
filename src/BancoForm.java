@@ -28,23 +28,22 @@ public class BancoForm extends JFrame{
 
         actualizarPantalla();
 
-
         depositarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String entrada = JOptionPane.showInputDialog("Ingrese el monto a depositar:");
+                String montoDepositar = JOptionPane.showInputDialog("Ingrese el monto a depositar:");
                 try {
-                    double monto = Double.parseDouble(entrada);
+                    double monto = Double.parseDouble(montoDepositar);
                     if (monto > 0) {
                         cliente.depositar(monto);
                         actualizarSaldo();
-                        historialTextArea.append("Depósito: +$" + monto + "\n");
-                        JOptionPane.showMessageDialog(null, "Depósito realizado con éxito");
+                        historialTextArea.append("Depósito: " + monto + "\n");
+                        JOptionPane.showMessageDialog(null, "Deposito realizado con exito");
                     } else {
                         JOptionPane.showMessageDialog(null, "Ingrese un monto positivo.");
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Monto inválido");
+                    JOptionPane.showMessageDialog(null, "Error: Monto invalido");
                 }
 
             }
@@ -52,20 +51,20 @@ public class BancoForm extends JFrame{
         retirarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String entrada= JOptionPane.showInputDialog("Ingrese monto a retirar:");
+                String montoRetiro= JOptionPane.showInputDialog("Ingrese monto a retirar:");
                 try {
-                    double monto = Double.parseDouble(entrada);
+                    double monto = Double.parseDouble(montoRetiro);
                     if (monto <= 0) {
                         JOptionPane.showMessageDialog(null, "Ingrese un monto positivo.");
                     } else if (cliente.retirar(monto)) {
                         actualizarSaldo();
-                        historialTextArea.append("Retiro: -$" + monto+ "\n");
-                        JOptionPane.showMessageDialog(null, "Retiro realizado con éxito");
+                        historialTextArea.append("Retiro: " + monto+ "\n");
+                        JOptionPane.showMessageDialog(null, "Retiro realizado con exito");
                     } else {
                         JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Valor inválido.");
+                    JOptionPane.showMessageDialog(null, "Error: Monto invalido");
                 }
 
 
